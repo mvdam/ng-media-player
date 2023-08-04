@@ -1,3 +1,4 @@
+# Make sure to set <base href="/" /> to <base href="." />
 name: Build with Angular app and deploy build to Github Pages
 
 on:
