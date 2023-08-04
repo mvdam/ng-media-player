@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Video } from 'src/domain/video';
+import { Video, NewVideo } from 'src/domain/video';
 
 const VIDEOS: Video[] = [
   {
@@ -7,14 +7,15 @@ const VIDEOS: Video[] = [
     title: 'N E T R U N (Synthwave/Electronic/Retrowave MIX)',
     thumbnailUrl:
       'https://i.ytimg.com/vi/S7i3ugniyjg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9eNb_5uCtez02Z_ccHgbTQbRtfw',
-    playbackUrl: 'https://www.youtube.com/watch?v=S7i3ugniyjg',
+    playbackUrl: 'https://www.youtube.com/embed/S7i3ugniyjg',
+    description: 'A video from INEXED',
   },
   {
     id: 2,
     title: '4 HOUR MIX - Gear Seekers: We Make The Music',
     thumbnailUrl:
       'https://i.ytimg.com/vi/aMoPefb_qRw/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZfVAABQPIba4s13IbOqQR_jI8Jg',
-    playbackUrl: 'https://www.youtube.com/watch?v=aMoPefb_qRw',
+    playbackUrl: 'https://www.youtube.com/embed/aMoPefb_qRw',
   },
 ];
 
@@ -26,5 +27,19 @@ export class VideoService {
 
   getVideos() {
     return this.videos;
+  }
+
+  findVideoById(id: number) {
+    return this.videos.find((v) => v.id === id);
+  }
+
+  addVideo(video: NewVideo) {
+    this.videos = [
+      ...this.videos,
+      {
+        ...video,
+        id: this.videos.length + 1,
+      },
+    ];
   }
 }

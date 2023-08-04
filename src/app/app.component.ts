@@ -7,4 +7,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Angular Media Player';
+  navLinks = [
+    {
+      title: "Video's",
+      href: '/',
+    },
+    {
+      title: 'Search',
+      href: '/search',
+    },
+    {
+      title: 'Add',
+      href: '/add',
+    },
+  ];
 }

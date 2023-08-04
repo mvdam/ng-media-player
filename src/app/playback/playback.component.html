@@ -1,0 +1,8 @@
+<div *ngIf="video && videoSrc">
+  <a routerLink="/" class="backLink">&circlearrowleft; Back</a>
+  <iframe class="videoFrame" [src]="videoSrc"></iframe>
+  <h2>{{ video.title }}</h2>
+  <p *ngIf="video.description">
+    {{ video.description }}
+  </p>
+</div>

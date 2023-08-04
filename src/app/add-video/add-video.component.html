@@ -1,0 +1,23 @@
+<h2>Add video to the collection</h2>
+
+<div class="formWrapper">
+  <div class="formRow">
+    <label for="title">Title</label>
+    <input id="title" type="text" [(ngModel)]="video.title" />
+  </div>
+  <div class="formRow">
+    <label for="url">Embed URL</label>
+    <input id="url" type="text" [(ngModel)]="video.playbackUrl" />
+  </div>
+  <div class="formRow">
+    <label for="thumbnail">Thumbnail URL</label>
+    <input id="thumbnail" type="text" [(ngModel)]="video.thumbnailUrl" />
+  </div>
+  <div class="formRow">
+    <label for="description">Description</label>
+    <textarea id="description" [(ngModel)]="video.description"></textarea>
+  </div>
+  <div class="formRow">
+    <button type="button" (click)="saveVideo()">Save</button>
+  </div>
+</div>

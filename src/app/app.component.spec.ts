@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { VideoComponent } from './video/video.component';
-import { VideosComponent } from './videos/videos.component';
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
-      declarations: [AppComponent, VideosComponent, VideoComponent],
+      imports: [RouterTestingModule, FormsModule],
+      declarations: [AppComponent],
     }).compileComponents();
   });
 
