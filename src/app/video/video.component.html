@@ -1,0 +1,8 @@
+<div class="videoItem" *ngIf="video">
+  <a href="{{ video.playbackUrl }}">
+    <img src="{{ video.thumbnailUrl }}" alt="{{ video.title }}" />
+  </a>
+  <div class="title" title="{{ video.title | uppercase }}">
+    {{ video.title }}
+  </div>
+</div>
