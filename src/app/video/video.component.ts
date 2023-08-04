@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Video } from 'src/domain/video';
 
 @Component({
-  selector: 'video-item',
+  selector: 'app-video',
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.scss'],
 })
