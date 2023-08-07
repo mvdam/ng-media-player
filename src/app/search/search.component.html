@@ -1,2 +1,22 @@
 <h2>Search</h2>
-<p>To be implemented...</p>
+<div class="formWrapper">
+  <div class="formRow">
+    <label for="query">Query</label>
+    <input id="query" type="text" [(ngModel)]="searchQuery" />
+  </div>
+  <div class="formRow">
+    <button type="button" (click)="handleSubmit()">Search</button>
+  </div>
+</div>
+
+<div class="results" *ngIf="results !== null">
+  <h2>Results ({{ results.length }})</h2>
+  <a
+    class="result"
+    *ngFor="let result of results"
+    routerLink="/play/{{ result.id }}"
+  >
+    <img src="{{ result.thumbnailUrl }}" />
+    <p>{{ result.title }}</p>
+  </a>
+</div>

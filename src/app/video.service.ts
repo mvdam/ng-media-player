@@ -33,6 +33,14 @@ export class VideoService {
     return this.videos.find((v) => v.id === id);
   }
 
+  findByQuery(query: string) {
+    return this.videos.filter(
+      (v) =>
+        v.title.toLowerCase().includes(query.toLowerCase()) ||
+        v.description?.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
   addVideo(video: NewVideo) {
     this.videos = [
       ...this.videos,

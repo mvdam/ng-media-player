@@ -1,7 +1,7 @@
 ## TODOs
 
-- [ ] Add playback page with routing /video/:id
-- [ ] Add page to add videos to the state
-- [ ] Add search page / functionality
+- [ ] Make more reactive
+- [ ] How to work with DOM elements, events etc?
+- [ ] Folder structure
 - [ ] Extend tests
 - [ ] ...
