@@ -34,6 +34,10 @@ export class VideoService {
   }
 
   findByQuery(query: string) {
+    if (!query) {
+      return this.videos;
+    }
+
     return this.videos.filter(
       (v) =>
         v.title.toLowerCase().includes(query.toLowerCase()) ||

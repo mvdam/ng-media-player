@@ -5,4 +5,12 @@
   <p *ngIf="video.description">
     {{ video.description }}
   </p>
+
+  <app-video-player
+    [options]="{
+      autoplay: true,
+      controls: true,
+      sources: [{ src: '/assets/example-video.mp4', type: 'video/mp4' }]
+    }"
+  ></app-video-player>
 </div>

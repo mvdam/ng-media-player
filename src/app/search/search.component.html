@@ -5,7 +5,13 @@
     <input id="query" type="text" [(ngModel)]="searchQuery" />
   </div>
   <div class="formRow">
-    <button type="button" (click)="handleSubmit()">Search</button>
+    <button
+      type="button"
+      (click)="handleSubmit()"
+      [disabled]="searchQuery === ''"
+    >
+      Search
+    </button>
   </div>
 </div>
 
