@@ -1,57 +1,51 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Video, NewVideo } from 'src/domain/video';
-
-const VIDEOS: Video[] = [
-  {
-    id: 1,
-    title: 'N E T R U N (Synthwave/Electronic/Retrowave MIX)',
-    thumbnailUrl:
-      'https://i.ytimg.com/vi/S7i3ugniyjg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9eNb_5uCtez02Z_ccHgbTQbRtfw',
-    playbackUrl: 'https://www.youtube.com/embed/S7i3ugniyjg',
-    description: 'A video from INEXED',
-  },
-  {
-    id: 2,
-    title: '4 HOUR MIX - Gear Seekers: We Make The Music',
-    thumbnailUrl:
-      'https://i.ytimg.com/vi/aMoPefb_qRw/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZfVAABQPIba4s13IbOqQR_jI8Jg',
-    playbackUrl: 'https://www.youtube.com/embed/aMoPefb_qRw',
-  },
-];
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VideoService {
-  videos = VIDEOS;
+  videos$: Observable<Video[]>;
 
-  getVideos() {
-    return this.videos;
+  constructor(private httpClient: HttpClient) {
+    this.videos$ = this.httpClient.get<Video[]>(
+      'https://raw.githubusercontent.com/mvdam/mvd-cdn/main/videos/video-collection.json'
+    );
   }
 
-  findVideoById(id: number) {
-    return this.videos.find((v) => v.id === id);
+  getVideos() {
+    return this.videos$;
+  }
+
+  findVideoById(id: string) {
+    return this.videos$.pipe(map((videos) => videos.find((v) => v.id === id)));
   }
 
   findByQuery(query: string) {
     if (!query) {
-      return this.videos;
+      return this.videos$;
     }
 
-    return this.videos.filter(
-      (v) =>
-        v.title.toLowerCase().includes(query.toLowerCase()) ||
-        v.description?.toLowerCase().includes(query.toLowerCase())
+    return this.videos$.pipe(
+      map((v) =>
+        v.filter(
+          (v) =>
+            v.title.toLowerCase().includes(query.toLowerCase()) ||
+            v.description.toLowerCase().includes(query.toLowerCase())
+        )
+      )
     );
   }
 
   addVideo(video: NewVideo) {
-    this.videos = [
-      ...this.videos,
-      {
-        ...video,
-        id: this.videos.length + 1,
-      },
-    ];
+    // this.videos = [
+    //   ...this.videos,
+    //   {
+    //     ...video,
+    //     id: '',
+    //   },
+    // ];
   }
 }

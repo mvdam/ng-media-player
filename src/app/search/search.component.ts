@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Video } from 'src/domain/video';
 import { VideoService } from '../video.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { EMPTY, Observable, filter } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -11,7 +11,7 @@ import { filter } from 'rxjs';
 })
 export class SearchComponent implements OnInit {
   searchQuery = '';
-  results: Video[] | null = null;
+  results$: Observable<Video[]> = EMPTY;
 
   constructor(
     private videoService: VideoService,
@@ -24,7 +24,7 @@ export class SearchComponent implements OnInit {
   }
 
   searchVideos() {
-    this.results = this.videoService.findByQuery(this.searchQuery);
+    this.results$ = this.videoService.findByQuery(this.searchQuery);
   }
 
   ngOnInit() {

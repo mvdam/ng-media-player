@@ -1,9 +1,9 @@
-import { Component, OnInit, SecurityContext } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VideoService } from '../video.service';
 import { Router } from '@angular/router';
 import { Video } from 'src/domain/video';
+import { EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-playback',
@@ -11,35 +11,22 @@ import { Video } from 'src/domain/video';
   styleUrls: ['./playback.component.scss'],
 })
 export class PlaybackComponent implements OnInit {
-  video: Video | undefined;
-  videoSrc: SafeResourceUrl | null = null;
+  video$: Observable<Video | undefined> = EMPTY;
 
   constructor(
     private route: ActivatedRoute,
     private videoService: VideoService,
-    private router: Router,
-    private sanitizer: DomSanitizer
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    const videoId = Number(this.route.snapshot.paramMap.get('id'));
+    const videoId = String(this.route.snapshot.paramMap.get('id'));
 
     if (!videoId) {
       this.router.navigate(['/']);
       return;
     }
 
-    this.video = this.videoService.findVideoById(videoId);
-    this.videoSrc = this.sanitizeUrlAndMarkTrusted(
-      this.video?.playbackUrl || null
-    );
-  }
-
-  private sanitizeUrlAndMarkTrusted(url: string | null) {
-    const unsafeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url || '');
-    const sanitizedUrl =
-      this.sanitizer.sanitize(SecurityContext.RESOURCE_URL, unsafeUrl) || '';
-
-    return this.sanitizer.bypassSecurityTrustResourceUrl(sanitizedUrl);
+    this.video$ = this.videoService.findVideoById(videoId);
   }
 }

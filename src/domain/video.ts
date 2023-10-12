@@ -1,9 +1,9 @@
 export type Video = {
-  id: number;
+  id: string;
   title: string;
   thumbnailUrl: string;
   playbackUrl: string;
-  description?: string;
+  description: string;
 };
 
 export type NewVideo = Omit<Video, 'id'>;

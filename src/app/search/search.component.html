@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<div class="results" *ngIf="results !== null">
+<div class="results" *ngIf="results$ | async as results">
   <h2>Results ({{ results.length }})</h2>
   <a
     class="result"

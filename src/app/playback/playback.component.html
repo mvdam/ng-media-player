@@ -1,6 +1,5 @@
-<div *ngIf="video && videoSrc">
+<div *ngIf="video$ | async as video">
   <a routerLink="/" class="backLink">&circlearrowleft; Back</a>
-  <iframe class="videoFrame" [src]="videoSrc"></iframe>
   <h2>{{ video.title }}</h2>
   <p *ngIf="video.description">
     {{ video.description }}
@@ -10,7 +9,12 @@
     [options]="{
       autoplay: true,
       controls: true,
-      sources: [{ src: '/assets/example-video.mp4', type: 'video/mp4' }]
+      sources: [
+        {
+          src: video.playbackUrl,
+          type: 'video/mp4'
+        }
+      ]
     }"
   ></app-video-player>
 </div>
