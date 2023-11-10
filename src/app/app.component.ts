@@ -16,9 +16,5 @@ export class AppComponent {
       title: 'Search',
       href: '/search',
     },
-    {
-      title: 'Add',
-      href: '/add',
-    },
   ];
 }

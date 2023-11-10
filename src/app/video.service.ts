@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Video, NewVideo } from 'src/domain/video';
+import { Video } from 'src/domain/video';
 import { Observable, map } from 'rxjs';
 
 @Injectable({
@@ -37,15 +37,5 @@ export class VideoService {
         )
       )
     );
-  }
-
-  addVideo(video: NewVideo) {
-    // this.videos = [
-    //   ...this.videos,
-    //   {
-    //     ...video,
-    //     id: '',
-    //   },
-    // ];
   }
 }

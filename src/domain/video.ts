@@ -5,5 +5,3 @@ export type Video = {
   playbackUrl: string;
   description: string;
 };
-
-export type NewVideo = Omit<Video, 'id'>;
