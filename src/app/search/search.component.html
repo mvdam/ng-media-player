@@ -2,14 +2,15 @@
 <div class="formWrapper">
   <div class="formRow">
     <label for="query">Query</label>
-    <input id="query" type="text" [(ngModel)]="searchQuery" />
+    <input
+      id="query"
+      type="text"
+      [ngModel]="searchQuery()"
+      (ngModelChange)="searchQuery.set($event)"
+    />
   </div>
   <div class="formRow">
-    <button
-      type="button"
-      (click)="handleSubmit()"
-      [disabled]="searchQuery === ''"
-    >
+    <button type="button" (click)="handleSubmit()" [disabled]="disabled()">
       Search
     </button>
   </div>
